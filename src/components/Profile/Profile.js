@@ -1,29 +1,26 @@
 import React, {useContext, useEffect, useState} from "react";
+import {SET_USER} from "../../constants/constants";
 import store from "../../store/store";
+import { Button, TextField } from "@material-ui/core";
 import axios from "axios";
 import {APIConfig} from "../../store/API-Config";
-import {SET_USER} from "../../constants/constants";
 import {useDispatch} from "react-redux";
-import { Button, TextField } from "@material-ui/core";
-
 
 
 const  Profile = () =>{
     const APIs = useContext(APIConfig);
     const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [password, setPassword] = useState('');
     const [phNumber, setPhNumber] = useState('');
     const [userInfo, setUserInfo ] = useState(null);
     const dispatch = useDispatch();
     const state = store.getState();
+    const [lastName, setLastName] = useState('');
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Authorization': 'Bearer ' + state.oAuthToken,
     }
-
-
 
 const loadCurrentData = ()=>{
     axios(APIs.userAPI + "/current",{headers})
@@ -50,7 +47,6 @@ useEffect(()=>{
 
     const submitUserprofileHandler = (e) => {
         e.preventDefault();
-        // dispatch update profile
         if (password !== confirmPassword) {
             alert('Password and Confirm Password Are Not Matched');
         } else {

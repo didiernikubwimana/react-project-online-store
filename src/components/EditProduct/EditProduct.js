@@ -11,15 +11,15 @@ import InputLabel from "@material-ui/core/InputLabel";
 
 const EditProduct = (props) =>{
     const APIs = useContext(APIConfig);
-    const [productName, setProductName] = useState('');
     const [producer, setProducer] = useState('');
     const [description, setDescription] = useState('');
-    const [size, setSize] = useState('');
+    const [category, setCategory] = useState('');
     const [price, setPrice] = useState('');
     const [color, setColor] = useState('');
     const [quantityInStock, setQuantityInStock] = useState('');
-    const [category, setCategory] = useState('');
+    const [productName, setProductName] = useState('');
     const [product,setProduct] = useState(null);
+    const [size, setSize] = useState('');
     const state = store.getState();
     const headers = {
         'Access-Control-Allow-Origin': '*',
@@ -42,7 +42,7 @@ const EditProduct = (props) =>{
                 id: category
             }
         },{headers}).then(response => {
-            alert("Edited successfully");
+            alert("Product Edited successfully");
             document.location.href = '/productlist/seller';
         })
             .catch(error => {
@@ -52,16 +52,16 @@ const EditProduct = (props) =>{
     const loadData = ()=>{
         axios(APIs.productAPI + "/" + props.match.params.id,{headers})
             .then(response =>{
-                const p = response.data;
-                setProduct(p);
-                setProductName(p.productName);
-                setProducer(p.producer);
-                setDescription(p.description);
-                setSize(p.size);
-                setPrice(p.price);
-                setColor(p.color);
-                setQuantityInStock(p.quantityInStock);
-                setCategory(p.category.id);
+                const prdata = response.data;
+                setProduct(prdata);
+                setProductName(prdata.productName);
+                setProducer(prdata.producer);
+                setDescription(prdata.description);
+                setSize(prdata.size);
+                setPrice(prdata.price);
+                setColor(prdata.color);
+                setQuantityInStock(prdata.quantityInStock);
+                setCategory(prdata.category.id);
             }).catch(error => {
             alert(error.message);
         }).catch(error=>{
@@ -97,7 +97,7 @@ const EditProduct = (props) =>{
                   label="Producer"
                       type="text"
                       id="producer"
-                      placeholder="Enter Producer"
+                      placeholder="Enter Producer Name"
                       required
                       onChange={(e) => setProducer(e.target.value)}
                       defaultValue={product.producer}
@@ -109,7 +109,7 @@ const EditProduct = (props) =>{
                   label="Size"
                       type="text"
                       id="Size"
-                      placeholder="Enter Size"
+                      placeholder="Enter Size of Product"
                       required
                       onChange={(e) => setSize(e.target.value)}
                       defaultValue={product.size}

@@ -1,22 +1,23 @@
 import React, {useContext, useEffect, useState} from "react";
 import store from "../../store/store";
-import axios from "axios";
-import {APIConfig} from "../../store/API-Config";
-import {SET_USER} from "../../constants/constants";
-import {useDispatch} from "react-redux";
 import { Button, TextField } from "@material-ui/core";
+import axios from "axios";
+import {SET_USER} from "../../constants/constants";
+import {APIConfig} from "../../store/API-Config";
+import {useDispatch} from "react-redux";
+
 
 
 
 const  Profile = () =>{
     const APIs = useContext(APIConfig);
-    const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [firstName, setFirstName] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
     const [phNumber, setPhNumber] = useState('');
-    const [userInfo, setUserInfo ] = useState(null);
+    const [confirmPassword, setConfirmPassword] = useState('');
     const dispatch = useDispatch();
+    const [userInfo, setUserInfo ] = useState(null);
     const state = store.getState();
     const headers = {
         'Access-Control-Allow-Origin': '*',
@@ -50,9 +51,8 @@ useEffect(()=>{
 
     const submitUserprofileHandler = (e) => {
         e.preventDefault();
-        // dispatch update profile
-        if (password !== confirmPassword) {
-            alert('Password and Confirm Password Are Not Matched');
+        if (confirmPassword!==password) {
+            alert('Password and Confirmed Password Are Not Matched');
         } else {
 
             axios.post(APIs.userAPI + "/update", {

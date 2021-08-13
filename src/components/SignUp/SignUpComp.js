@@ -13,12 +13,12 @@ const SignUp = (props)=>{
 
     const APIs = useContext(APIConfig);
     const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [lastName, setLastName] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [userRole, setUserRole] = useState('');
+    const [password, setPassword] = useState('');
     const [phNumber, setPhNumber] = useState('');
+    const [userRole, setUserRole] = useState('');
 
     function handleRegisterSubmit(event) {
         event.preventDefault();

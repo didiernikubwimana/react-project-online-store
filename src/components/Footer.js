@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
- 
+import Paper from '@material-ui/core/Paper';
+
 const styles = theme => ({
   root: {
     ...theme.mixins.gutters(),

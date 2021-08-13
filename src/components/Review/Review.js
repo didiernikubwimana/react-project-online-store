@@ -1,17 +1,18 @@
 import "./Review.css"
-import React, { useContext, useEffect, useState, useRef } from "react";
 import { APIConfig } from "../../store/API-Config";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import store from "../../store/store";
-import axios from "axios";
 import { Button, TextareaAutosize } from "@material-ui/core";
+import axios from "axios";
+
 
 const Review = (props) => {
     const APIs = useContext(APIConfig);
-    const [reviews, setReviews] = useState([]);
     const state = store.getState();
-    const [showReviewForm, setShowReviewForm] = useState(false);
+    const [reviews, setReviews] = useState([]);
     const contentRef = useRef(null);
-
+    const [showReviewForm, setShowReviewForm] = useState(false);
+    
     const loadReviewData = () => {
         axios(APIs.productAPI + "/" + props.productId + "/reviews")
             .then(response => {
@@ -46,7 +47,7 @@ const Review = (props) => {
 
         axios.post(APIs.reviewAPI, data, {headers})
             .then(response => {
-                alert('Review was sent. Wait to be approved');
+                alert('Review was sent. Waiting to be approved');
             }).catch(error => {
             alert(error.message);
         })

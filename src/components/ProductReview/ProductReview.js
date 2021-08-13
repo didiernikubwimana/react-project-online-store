@@ -1,15 +1,16 @@
 
 import React, {useContext, useEffect, useState} from "react";
-import {APIConfig} from "../../store/API-Config";
-import store from "../../store/store";
-import axios from "axios";
 import {REVIEW_API} from "../../constants/constants";
 import { Button } from "@material-ui/core";
+import {APIConfig} from "../../store/API-Config";
+import axios from "axios";
+import store from "../../store/store";
+
 
 const  ProductReview = ()=>{
     const APIs = useContext(APIConfig);
-    const [reviews,setReviews] = useState([]);
     const state = store.getState();
+    const [reviews,setReviews] = useState([]);
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Authorization': 'Bearer ' + state.oAuthToken,
@@ -46,7 +47,7 @@ const  ProductReview = ()=>{
               <tr>
                   <th>ID</th>
                   <th>STAR</th>
-                  <th>COMMENT</th>
+                  <th>COMMENTS</th>
                   <th>APPROVED</th>
               </tr>
               </thead>

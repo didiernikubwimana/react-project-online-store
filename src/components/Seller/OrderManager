@@ -1,7 +1,7 @@
 import "./OrderManager.css"
 import React, {useContext, useEffect, useState} from "react";
-import {APIConfig} from "../../store/API-Config";
 import store from "../../store/store";
+import {APIConfig} from "../../store/API-Config";
 import axios from "axios";
 
 const OrderManager = ()=>{
@@ -13,6 +13,18 @@ const OrderManager = ()=>{
         'Authorization': 'Bearer ' + state.oAuthToken,
     }
    
+   const cancelHandler = (order) => {
+        axios(APIs.sellerAPI + "/" + order.id+ "/cancel", {headers})
+            .then(response => {
+                if(response.data === true){
+                    order.currentStatus = "CANCELLED";
+                    loadMySellerInfoData();
+                }
+            }).catch(error => {
+            alert(error.message);
+        })
+    };
+    
     const shippedHandler = (order) => {
         axios(APIs.sellerAPI + "/" + order.id+ "/shipped", {headers})
             .then(response => {
@@ -24,17 +36,7 @@ const OrderManager = ()=>{
         })
     };
 
-     const cancelHandler = (order) => {
-        axios(APIs.sellerAPI + "/" + order.id+ "/cancel", {headers})
-            .then(response => {
-                if(response.data === true){
-                    order.currentStatus = "CANCELLED";
-                    loadMySellerInfoData();
-                }
-            }).catch(error => {
-            alert(error.message);
-        })
-    };
+     
     
     const deliveredHandler = (order) => {
         axios(APIs.sellerAPI + "/" + order.id+ "/delivered", {headers})

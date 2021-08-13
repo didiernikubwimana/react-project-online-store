@@ -1,26 +1,26 @@
 import logo from './logo.svg';
-import React, { useEffect, useState,useContext } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import './App.css';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect, BrowserRouter} from "react-router-dom";
+import React, { useEffect, useState,useContext } from 'react';
+import './App.css';
 import Login from "./components/Login/Login";
-import SignUp from "./components/SignUp/SignUpComp";
+import { useDispatch, useSelector } from 'react-redux';
 import {APIConfig} from "./store/API-Config";
 import Home from "./containers/Home/Home";
-import {UserInfo} from "./store/AppContext";
+import OrderManager from "./components/Seller/OrderManager";
 import store from "./store/store";
 import {LOGOUT, SET_USER} from "./constants/constants";
 import Approval from "./components/Approval/Approval";
 import ProductManager from "./components/ProductManager/ProductManagerComp";
 import Products from './containers/Products/Products';
 import ProductReview from "./components/ProductReview/ProductReview";
-import OrderManager from "./components/Seller/OrderManager";
-import Orders from "./components/Orders/Orders";
-import Profile from "./components/Profile/Profile";
-import AddProduct from "./components/AddProduct/AddProducts";
+import {UserInfo} from "./store/AppContext";
 import EditProduct from "./components/EditProduct/EditProduct";
+import Orders from "./components/Orders/Orders";
+import AddProduct from "./components/AddProduct/AddProducts";
+import Profile from "./components/Profile/Profile";
 import ShoppingCart from './containers/ShoppingCart/ShoppingCart';
 import Footer from "./components/Footer";
+import SignUp from "./components/SignUp/SignUpComp";
 import Header from "./components/Header";
 
 
@@ -49,14 +49,14 @@ function App() {
         {
           registerAPI: 'http://localhost:8080/signup',
           loginAPI: 'http://localhost:8080/authenticate',
-          logoutAPI: 'http://localhost:8080/logout',
           productAPI: 'http://localhost:8080/api/products',
-          orderAPI: 'http://localhost:8080/api/orders',
+          logoutAPI: 'http://localhost:8080/logout',
           sellerAPI: 'http://localhost:8080/api/sellers',
-          categoryAPI: 'http://localhost:8080/api/categories',
-          roleAPI: 'http://localhost:8080/api/roles',
+          orderAPI: 'http://localhost:8080/api/orders',
           userAPI: 'http://localhost:8080/api/users',
+          categoryAPI: 'http://localhost:8080/api/categories',
           adminAPI: 'http://localhost:8080/api/admin',
+          roleAPI: 'http://localhost:8080/api/roles',
           reviewAPI: 'http://localhost:8080/api/reviews'
         }
       }>

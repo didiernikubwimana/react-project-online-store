@@ -1,32 +1,22 @@
 import React, { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
-import { APIConfig } from '../../store/API-Config';
-import { Link } from 'react-router-dom';
-import Review from '../../components/Review/Review';
 import { Button, MenuItem, Select, TextField } from '@material-ui/core';
-
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { APIConfig } from '../../store/API-Config';
+import Review from '../../components/Review/Review';
 
 export default function Products(props) {
     const APIs = useContext(APIConfig);
-    const productAPI = APIs.productAPI;
     const productId = props.match.params.id;
-    console.log(productId);
+    const productAPI = APIs.productAPI;
     const [product, setProduct] = useState([]);
-    //   const product = data.products.find((x) => x.id === props.match.params.id);
     const [qty, setQty] = useState(1);
- 
-
 
   useEffect(() => {
     const fetchData = async () => {
         try {
             const { data } = await axios.get(productAPI + '/' + productId);
             setProduct(data);
-            console.log("success 1");
-            // const productMatch = data.product.find((x) => x.product.id === productId);
-            // console.log("success 2");
-            // setProduct(productMatch);
-            console.log("success 3");
             console.log(product);
             console.log("Success data");
           } catch (err) {
@@ -73,15 +63,7 @@ export default function Products(props) {
                 <ul>
                   <li>
                     Seller{' '}
-                    {/* <h2>
-                      <Link to={`/seller/${product.seller.id}`}>
-                        {product.seller.seller.name}
-                      </Link>
-                    </h2> */}
-                    {/* <Rating
-                      rating={product.seller.seller.rating}
-                      numReviews={product.seller.seller.numReviews}
-                    ></Rating> */}
+                    
                   </li>
                   <li>
                     <div className="row">
@@ -128,7 +110,6 @@ export default function Products(props) {
                       <li>
                         <Button
                           onClick={addToCartHandler}
-                          // className="primary block"
                           color="primary"
                           variant="contained"
                           size="large"

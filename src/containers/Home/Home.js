@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
 import Product from '../../components/Product/Products';
-import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
 import { APIConfig } from '../../store/API-Config';
+import axios from 'axios';
 import store from "../../store/store";
 
 export default function Home() {
     const [products, setProducts] = useState([]);
     const APIs = useContext(APIConfig);
-    const productAPI = APIs.productAPI;
     const state = store.getState();
+    const productAPI = APIs.productAPI;
     const  userInfo = state.userInfo;
     useEffect(() => {
         const fecthData = async () => {

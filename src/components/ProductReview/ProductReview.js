@@ -1,15 +1,13 @@
-
 import React, {useContext, useEffect, useState} from "react";
-import {APIConfig} from "../../store/API-Config";
-import store from "../../store/store";
-import axios from "axios";
-import {REVIEW_API} from "../../constants/constants";
 import { Button } from "@material-ui/core";
-
+import {APIConfig} from "../../store/API-Config";
+import axios from "axios";
+import store from "../../store/store";
+import {REVIEW_API} from "../../constants/constants";
 const  ProductReview = ()=>{
     const APIs = useContext(APIConfig);
-    const [reviews,setReviews] = useState([]);
     const state = store.getState();
+    const [reviews,setReviews] = useState([]);
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Authorization': 'Bearer ' + state.oAuthToken,
@@ -25,7 +23,6 @@ const  ProductReview = ()=>{
                 alert(error.message);
         })
     };
-
     const loadNotapprovedData = ()=>{
         axios(REVIEW_API + "/notapproved",{headers})
             .then(response=>{
@@ -47,7 +44,7 @@ const  ProductReview = ()=>{
                   <th>ID</th>
                   <th>STAR</th>
                   <th>COMMENT</th>
-                  <th>APPROVED</th>
+                  <th>APPROVED STATUS</th>
               </tr>
               </thead>
               <tbody>
@@ -60,7 +57,6 @@ const  ProductReview = ()=>{
                           {!review.approved && (
                               <Button
                                   type="button"
-                                //   className="small"
                                   onClick={() => approveReviewHandler(review)}
                                   color="secondary" size="small" variant="contained" 
                               >
@@ -76,4 +72,5 @@ const  ProductReview = ()=>{
     );
 
 }
+
 export  default  ProductReview;

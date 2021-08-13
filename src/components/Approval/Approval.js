@@ -1,12 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react';
 import axios from "axios";
-import {APIConfig} from "../../store/API-Config";
+import Select from "@material-ui/core/Select";
 import store from "../../store/store";
 import { Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
+import {APIConfig} from "../../store/API-Config";
 
 const Approval = (props)=>{
     const APIs = useContext(APIConfig);
@@ -47,7 +47,7 @@ return (
            <tr>
                <th>ID</th>
                <th>NAME</th>
-               <th>APPROVED</th>
+               <th>APPROVAL STATUS</th>
            </tr>
            </thead>
            <tbody>

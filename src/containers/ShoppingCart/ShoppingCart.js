@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
 import axios from 'axios';
+import { Button } from '@material-ui/core';
 import { APIConfig } from '../../store/API-Config';
 import store from "../../store/store";
-import { Button } from '@material-ui/core';
+
 
 
 export default function ShoppingCart(props) {
@@ -19,7 +20,6 @@ export default function ShoppingCart(props) {
     const qty = props.location.search
     ? Number(props.location.search.split('=')[1])
     : 1;
-    console.log(qty);
     const [cartItems, setCartItems] = useState([]);
     const [product, setProduct] = useState([]);
     useEffect(() => {
@@ -38,7 +38,6 @@ export default function ShoppingCart(props) {
           }, []);
 
       const removeFromCartHandler = (id) => {
-        
       };
 
     const checkoutHandler = () => {
@@ -65,7 +64,6 @@ export default function ShoppingCart(props) {
                 </div>
                 <div>qty:{qty}</div>
             <div>
-
                         <Link to="/" color="primary">Delete</Link>
                     </div>
                     </div>

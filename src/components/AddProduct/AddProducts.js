@@ -2,24 +2,24 @@ import React, { useContext, useState } from "react";
 import { APIConfig } from "../../store/API-Config";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import store from "../../store/store";
 import { Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
+import store from "../../store/store";
 
 const AddProduct = () => {
   const APIs = useContext(APIConfig);
   const [productName, setProductName] = useState("");
-  const [producer, setProducer] = useState("");
+  const [color, setColor] = useState("");
   const [description, setDescription] = useState("");
   const [size, setSize] = useState("");
-  const [price, setPrice] = useState("");
-  const [color, setColor] = useState("");
-  const [quantityInStock, setQuantityInStock] = useState("");
   const [category, setCategory] = useState("");
+  const [price, setPrice] = useState("");
+  const [quantityInStock, setQuantityInStock] = useState("");
   const state = store.getState();
+  const [producer, setProducer] = useState("");
   const headers = {
     "Access-Control-Allow-Origin": "*",
     Authorization: "Bearer " + state.oAuthToken,
@@ -46,7 +46,7 @@ const AddProduct = () => {
         { headers }
       )
       .then((response) => {
-        alert("Added successfully");
+        alert("Product Added successfully");
         document.location.href = "/newproduct";
       })
       .catch((error) => {
@@ -75,7 +75,7 @@ const AddProduct = () => {
           label="Producer"
             type="text"
             id="producer"
-            placeholder="Enter Producer"
+            placeholder="Enter Producer Name"
             required
             onChange={(e) => setProducer(e.target.value)}
             variant="outlined"
@@ -97,7 +97,7 @@ const AddProduct = () => {
           label="Color"
             type="text"
             id="color"
-            placeholder="Enter color"
+            placeholder="Enter color of Product"
             required
             onChange={(e) => setColor(e.target.value)}
             variant="outlined"
@@ -108,7 +108,7 @@ const AddProduct = () => {
           label="Price"
             type="number"
             id="price"
-            placeholder="Enter Price"
+            placeholder="Enter Price of Product"
             required
             onChange={(e) => setPrice(e.target.value)}
             variant="outlined"
@@ -119,7 +119,7 @@ const AddProduct = () => {
             label="Quantity In Stock"
             type="number"
             id="quantityInStock"
-            placeholder="Enter Quantity In Stock"
+            placeholder="Enter Quantity of Product In Stock"
             required
             onChange={(e) => setQuantityInStock(e.target.value)}
             variant="outlined"

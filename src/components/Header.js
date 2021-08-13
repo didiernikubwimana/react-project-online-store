@@ -18,9 +18,10 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
     },
     imageList: {
-        flexWrap: 'nowrap',
+        flexGrow: 1,
         // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
         transform: 'translateZ(0)',
+        width:200,
     },
     title: {
         color: theme.palette.primary.light,
@@ -36,24 +37,7 @@ export default function Header() {
 
     return (
         <div className={classes.root}>
-            <ImageList className={classes.imageList} cols={2.5}>
-                {/*{randomImages.map((item) => (*/}
-                {/*    <ImageListItem key={item.img}>*/}
-                {/*        <img src={item.img} alt={item.title} />*/}
-                {/*        <ImageListItemBar*/}
-                {/*            title={item.title}*/}
-                {/*            classes={{*/}
-                {/*                root: classes.titleBar,*/}
-                {/*                title: classes.title,*/}
-                {/*            }}*/}
-                {/*            actionIcon={*/}
-                {/*                <IconButton aria-label={`star ${item.title}`}>*/}
-                {/*                    <StarBorderIcon className={classes.title} />*/}
-                {/*                </IconButton>*/}
-                {/*            }*/}
-                {/*        />*/}
-                {/*    </ImageListItem>*/}
-                {/*))}*/}
+            <ImageList className={classes.imageList} cols={4}>
                 <ImageListItem>
                     <img src="https://source.unsplash.com/400x400/?computers,technology"/>
                 </ImageListItem>
@@ -62,7 +46,8 @@ export default function Header() {
                 </ImageListItem>
                 <ImageListItem>
                     <img src="https://source.unsplash.com/400x400/?clothing,fashion"/>
-                </ImageListItem><ImageListItem>
+                </ImageListItem>
+                <ImageListItem>
                     <img src="https://source.unsplash.com/400x400/?food, healthy"/>
                 </ImageListItem>
             </ImageList>

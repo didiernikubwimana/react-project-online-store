@@ -12,8 +12,6 @@ const styles = theme => ({
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
-    marginTop: theme.spacing.unit * 8,
-    padding: `${theme.spacing.unit * 6}px 0`,
   }
 });
  
@@ -22,11 +20,11 @@ function Footer(props) {
  
   return (
     <footer className={classes.footer} >
-      <Paper className={classes.root} elevation={1} style={{backgroundColor:"#bd313a"}}>
-        <Typography variant="h4" component="h2" style={{color:"#203040"}}>
-         <center>Online  shopping store</center> 
+      <Paper className={classes.root} elevation={1} style={{backgroundColor:"#137b82"}}>
+        <Typography variant="h4" component="h2" style={{color:"#ffffff"}}>
+         <center>Good, pretty, and cheap!!!</center> 
         </Typography>
-        <Typography component="p" style={{color:"#203040"}}>
+        <Typography component="p" style={{color:"#ffffff"}}>
           @2021 All right reserved
         </Typography>
       </Paper>

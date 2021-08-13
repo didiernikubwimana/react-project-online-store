@@ -9,13 +9,13 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #dbd8d3;
+  background-color: #ffffff;
 }
 #root {
   height: 100%;
 }
 
-/* Layout */
+
 .grid-container {
   display: grid;
   grid-template-areas:
@@ -28,7 +28,7 @@ body {
 }
 header {
   grid-area: header;
-  background-color: #066269;
+  background-color: #4ebcc4;
 }
 main {
   grid-area: main;

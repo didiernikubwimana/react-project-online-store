@@ -1,15 +1,16 @@
 
 import React, {useContext, useEffect, useState} from "react";
 import {APIConfig} from "../../store/API-Config";
-import store from "../../store/store";
-import axios from "axios";
-import {Link} from "react-router-dom";
 import { Button } from "@material-ui/core";
+import axios from "axios";
+import store from "../../store/store";
+import {Link} from "react-router-dom";
+
 
 const  ProductManager = ()=>{
     const APIs = useContext(APIConfig);
-    const [products,setProducts] = useState([]);
     const state = store.getState();
+    const [products,setProducts] = useState([]);
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Authorization': 'Bearer ' + state.oAuthToken,
@@ -54,7 +55,7 @@ const  ProductManager = ()=>{
                   <th>NAME</th>
                   <th>PRODUCER</th>
                   <th>COLOR</th>
-                  <th>NUM IN STOCK</th>
+                  <th>QTY IN STOCK</th>
                   <th>SIZE</th>
                   <th>PRICE</th>
                   <th>ACTIONS</th>

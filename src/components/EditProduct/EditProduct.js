@@ -1,8 +1,8 @@
 import React, {useContext, useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 import {APIConfig} from "../../store/API-Config";
 import axios from "axios";
 import store from "../../store/store";
-import {Link} from "react-router-dom";
 import { Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Select from "@material-ui/core/Select";
@@ -12,14 +12,14 @@ import InputLabel from "@material-ui/core/InputLabel";
 const EditProduct = (props) =>{
     const APIs = useContext(APIConfig);
     const [productName, setProductName] = useState('');
-    const [producer, setProducer] = useState('');
     const [description, setDescription] = useState('');
+    const [producer, setProducer] = useState('');
+    const [color, setColor] = useState('');
     const [size, setSize] = useState('');
     const [price, setPrice] = useState('');
-    const [color, setColor] = useState('');
+    const [product,setProduct] = useState(null);
     const [quantityInStock, setQuantityInStock] = useState('');
     const [category, setCategory] = useState('');
-    const [product,setProduct] = useState(null);
     const state = store.getState();
     const headers = {
         'Access-Control-Allow-Origin': '*',
@@ -85,7 +85,7 @@ const EditProduct = (props) =>{
                   label="Product Name"
                       type="text"
                       id="productName"
-                      placeholder="Enter Product name"
+                      placeholder="Enter Product Name"
                       required
                       onChange={(e) => setProductName(e.target.value)}
                       defaultValue={product.productName}
@@ -97,7 +97,7 @@ const EditProduct = (props) =>{
                   label="Producer"
                       type="text"
                       id="producer"
-                      placeholder="Enter Producer"
+                      placeholder="Enter Producer Name"
                       required
                       onChange={(e) => setProducer(e.target.value)}
                       defaultValue={product.producer}
@@ -109,7 +109,7 @@ const EditProduct = (props) =>{
                   label="Size"
                       type="text"
                       id="Size"
-                      placeholder="Enter Size"
+                      placeholder="Enter Size of Product"
                       required
                       onChange={(e) => setSize(e.target.value)}
                       defaultValue={product.size}
@@ -121,7 +121,7 @@ const EditProduct = (props) =>{
                   label="Color"
                       type="text"
                       id="color"
-                      placeholder="Enter color"
+                      placeholder="Enter color of Product"
                       required
                       onChange={(e) => setColor(e.target.value)}
                       defaultValue={product.color}
@@ -133,7 +133,7 @@ const EditProduct = (props) =>{
                   label="Price"
                       type="number"
                       id="price"
-                      placeholder="Enter Price"
+                      placeholder="Enter Price of Product"
                       required
                       onChange={(e) => setPrice(e.target.value)}
                       defaultValue={product.price}
@@ -145,7 +145,7 @@ const EditProduct = (props) =>{
                   label="Quantity In Stock"
                       type="number"
                       id="quantityInStock"
-                      placeholder="Enter Quantity In Stock"
+                      placeholder="Enter Quantity In Stock for Product"
                       required
                       onChange={(e) => setQuantityInStock(e.target.value)}
                       defaultValue={product.quantityInStock}

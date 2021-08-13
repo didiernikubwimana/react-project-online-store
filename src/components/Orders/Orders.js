@@ -1,14 +1,15 @@
 
-import React, {useContext, useEffect, useState} from "react";
-import {APIConfig} from "../../store/API-Config";
 import store from "../../store/store";
-import axios from "axios";
+import {APIConfig} from "../../store/API-Config";
 import { Button } from "@material-ui/core";
+import React, {useContext, useEffect, useState} from "react";
+import axios from "axios";
+
 
 const  Orders = ()=>{
     const APIs = useContext(APIConfig);
-    const [orders,setOrders] = useState([]);
     const state = store.getState();
+    const [orders,setOrders] = useState([]);
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Authorization': 'Bearer ' + state.oAuthToken,
@@ -65,7 +66,7 @@ const  Orders = ()=>{
                 <tr>
                     <th>ID</th>
                     <th>DATE</th>
-                    <th>TOTAL</th>
+                    <th>AMOUNT TOTAL</th>
                     <th>STATUS</th>
                     <th>ACTIONS</th>
                 </tr>

@@ -48,7 +48,7 @@ return (
            <tr>
                <th>ID</th>
                <th>NAME</th>
-               <th>APPROVED</th>
+               <th>APPROVAL_STATUS</th>
            </tr>
            </thead>
            <tbody>

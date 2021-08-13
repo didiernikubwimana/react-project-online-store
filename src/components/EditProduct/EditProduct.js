@@ -121,7 +121,7 @@ const EditProduct = (props) =>{
                   label="Color"
                       type="text"
                       id="color"
-                      placeholder="Enter color"
+                      placeholder="Enter color of Product"
                       required
                       onChange={(e) => setColor(e.target.value)}
                       defaultValue={product.color}
@@ -133,7 +133,7 @@ const EditProduct = (props) =>{
                   label="Price"
                       type="number"
                       id="price"
-                      placeholder="Enter Price"
+                      placeholder="Enter Price of Product"
                       required
                       onChange={(e) => setPrice(e.target.value)}
                       defaultValue={product.price}
@@ -145,7 +145,7 @@ const EditProduct = (props) =>{
                   label="Quantity In Stock"
                       type="number"
                       id="quantityInStock"
-                      placeholder="Enter Quantity In Stock"
+                      placeholder="Enter Quantity of Productof Product In Stock"
                       required
                       onChange={(e) => setQuantityInStock(e.target.value)}
                       defaultValue={product.quantityInStock}

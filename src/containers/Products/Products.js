@@ -4,8 +4,6 @@ import { APIConfig } from '../../store/API-Config';
 import { Link } from 'react-router-dom';
 import Review from '../../components/Review/Review';
 import { Button, MenuItem, Select, TextField } from '@material-ui/core';
-
-
 export default function Products(props) {
     const APIs = useContext(APIConfig);
     const productAPI = APIs.productAPI;
@@ -26,12 +24,10 @@ export default function Products(props) {
         };
         fetchData();
       }, []);
-
   const addToCartHandler = () => {
     props.history.push(`/cart/${productId}?qty=${qty}`);
   };
   return (
-
         <div>
           <Link to="/">Back to home page</Link>
           <div className="row top">
@@ -48,9 +44,7 @@ export default function Products(props) {
                   <h1>{product.productName}</h1>
                 </li>
                 <li>
-
-                    <h2>{product.reviews}</h2>
-  
+                    <h2>{product.reviews}</h2> 
                 </li>
                 <li>Pirce : ${product.price}</li>
                 <li>

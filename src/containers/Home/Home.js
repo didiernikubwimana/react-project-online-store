@@ -1,7 +1,7 @@
 import store from "../../store/store";
+import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import Product from '../../components/Product/Products';
-import axios from 'axios';
 import { APIConfig } from '../../store/API-Config';
 export default function Home() {
     const [products, setProducts] = useState([]);

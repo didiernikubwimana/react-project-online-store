@@ -69,7 +69,7 @@ function App() {
                 <div>
 
                   <Link className="brand" to="/">
-                    Online  shopping store
+                  Mini Market
                   </Link>
                 </div>
                   <div>

@@ -273,10 +273,11 @@ img.large {
   min-width: 12rem;
   padding: 1rem;
   z-index: 1;
-  background-color: #203040;
+  background-color: #2d2f32;
   margin: 0;
   margin-top: 0.4rem;
   border-radius: 0.5rem;
+  font-size: 12pt;
 }
 .dropdown:hover .dropdown-content {
   display: block;

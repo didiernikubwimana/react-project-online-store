@@ -47,7 +47,7 @@ return (
            <tr>
                <th>ID</th>
                <th>NAME</th>
-               <th>APPROVED</th>git
+               <th>APPROVED</th>
            </tr>
            </thead>
            <tbody>

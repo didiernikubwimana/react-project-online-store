@@ -1,14 +1,11 @@
+import store from "../../store/store";
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
 import axios from 'axios';
 import { Button } from '@material-ui/core';
 import { APIConfig } from '../../store/API-Config';
-import store from "../../store/store";
-
-
-
+import { Link } from 'react-router-dom';
 export default function ShoppingCart(props) {
     console.log(props.location.pathname);
     const productId = props.location.pathname
@@ -39,7 +36,6 @@ export default function ShoppingCart(props) {
 
       const removeFromCartHandler = (id) => {
       };
-
     const checkoutHandler = () => {
         props.history.push('/signin?redirect=shipping');
     };

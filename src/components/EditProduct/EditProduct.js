@@ -1,27 +1,27 @@
 
+import Select from "@material-ui/core/Select";
 import {APIConfig} from "../../store/API-Config";
 import TextField from "@material-ui/core/TextField";
 import store from "../../store/store";
+import MenuItem from "@material-ui/core/MenuItem";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import { Button } from "@material-ui/core";
 import React, {useContext, useEffect, useState} from "react";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
-
 const EditProduct = (props) =>{
     const APIs = useContext(APIConfig);
     const [producer, setProducer] = useState('');
-    const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
     const [price, setPrice] = useState('');
     const [color, setColor] = useState('');
     const [quantityInStock, setQuantityInStock] = useState('');
     const [productName, setProductName] = useState('');
+    const [description, setDescription] = useState('');
     const [product,setProduct] = useState(null);
     const [size, setSize] = useState('');
     const state = store.getState();
+    
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Authorization': 'Bearer ' + state.oAuthToken,
@@ -29,7 +29,6 @@ const EditProduct = (props) =>{
 
     function handleSubmit(event) {
         event.preventDefault();
-
         axios.post(APIs.sellerAPI + "/updateproduct", {
             id:props.match.params.id,
             productName: productName,
@@ -68,12 +67,11 @@ const EditProduct = (props) =>{
         }).catch(error=>{
             alert(error.message);
         })
-
     }
     useEffect(()=>{
         loadData();
     },[]);
-
+    
     return (
       <div>
           {product && (

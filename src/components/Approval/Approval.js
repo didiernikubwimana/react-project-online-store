@@ -27,7 +27,6 @@ const Approval = (props)=>{
             alert(error.message);
         })
     };
-
     const loadData = ()=>{
         axios(APIs.sellerAPI,{headers})
             .then(response=>{
@@ -48,7 +47,7 @@ return (
            <tr>
                <th>ID</th>
                <th>NAME</th>
-               <th>APPROVED</th>
+               <th>APPROVED</th>git
            </tr>
            </thead>
            <tbody>

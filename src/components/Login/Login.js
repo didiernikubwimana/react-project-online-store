@@ -12,19 +12,16 @@ import { Button } from '@material-ui/core';
 
 export default function Login(props) {
     const APIs = useContext(APIConfig);
-    const { userInfo, setUserInfo } = useContext(UserInfo);
     const [email, setEmail] = useState("");
+    const { userInfo, setUserInfo } = useContext(UserInfo);
     const state = store.getState();
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
-
     function validateForm() {
         return email.length > 0 && password.length > 0;
     }
-
     function handleSubmit(event) {
         event.preventDefault();
-
         axios.post(APIs.loginAPI, {
             username:email,
             password:password
@@ -54,7 +51,6 @@ export default function Login(props) {
                 alert(error.message);
             })
     }
-
     return (
         <div>
             <form className="form" onSubmit={handleSubmit}>

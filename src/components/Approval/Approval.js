@@ -1,17 +1,18 @@
 import React, {useContext, useEffect, useState} from 'react';
+import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 import Select from "@material-ui/core/Select";
 import store from "../../store/store";
 import { Button } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
+
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 import {APIConfig} from "../../store/API-Config";
 
 const Approval = (props)=>{
     const APIs = useContext(APIConfig);
-    const [sellers,setSellers] = useState([]);
     const state = store.getState();
+    const [sellers,setSellers] = useState([]);
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Authorization': 'Bearer ' + state.oAuthToken,
@@ -74,5 +75,4 @@ return (
    </div>
 );
 }
-
 export  default Approval;

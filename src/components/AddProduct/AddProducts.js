@@ -1,24 +1,23 @@
 import React, { useContext, useState } from "react";
+import Select from "@material-ui/core/Select";
 import { APIConfig } from "../../store/API-Config";
+import MenuItem from "@material-ui/core/MenuItem";
 import { Link } from "react-router-dom";
+import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 import { Button } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import InputLabel from "@material-ui/core/InputLabel";
 import store from "../../store/store";
-
+import InputLabel from "@material-ui/core/InputLabel";
 const AddProduct = () => {
   const APIs = useContext(APIConfig);
-  const [productName, setProductName] = useState("");
   const [color, setColor] = useState("");
   const [description, setDescription] = useState("");
   const [size, setSize] = useState("");
-  const [category, setCategory] = useState("");
+  const [productName, setProductName] = useState("");
   const [price, setPrice] = useState("");
   const [quantityInStock, setQuantityInStock] = useState("");
   const state = store.getState();
+  const [category, setCategory] = useState("");
   const [producer, setProducer] = useState("");
   const headers = {
     "Access-Control-Allow-Origin": "*",
@@ -86,7 +85,7 @@ const AddProduct = () => {
           label="Size"
             type="text"
             id="Size"
-            placeholder="Enter Size"
+            placeholder="Enter Size of Product"
             required
             onChange={(e) => setSize(e.target.value)}
             variant="outlined"

@@ -1,10 +1,10 @@
 
 import React, {useContext, useEffect, useState} from "react";
-import {APIConfig} from "../../store/API-Config";
-import store from "../../store/store";
-import axios from "axios";
-import {Link} from "react-router-dom";
 import { Button } from "@material-ui/core";
+import {APIConfig} from "../../store/API-Config";
+import axios from "axios";
+import store from "../../store/store";
+import {Link} from "react-router-dom";
 
 const  ProductManager = ()=>{
     const APIs = useContext(APIConfig);

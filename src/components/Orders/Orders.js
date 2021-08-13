@@ -1,9 +1,9 @@
 
-import React, {useContext, useEffect, useState} from "react";
 import {APIConfig} from "../../store/API-Config";
+import { Button } from "@material-ui/core";
 import store from "../../store/store";
 import axios from "axios";
-import { Button } from "@material-ui/core";
+import React, {useContext, useEffect, useState} from "react";
 
 const  Orders = ()=>{
     const APIs = useContext(APIConfig);
@@ -78,11 +78,10 @@ const  Orders = ()=>{
                         <td>{order.totalMoney}</td>
                         <td>{order.currentStatus}</td>
                         <td>
-                            {order.currentStatus != "CANCELLED" &&
-                                order.currentStatus != "SHIPPED" && order.currentStatus != "DELIVERED" && (
+                            {
+                                order.currentStatus != "SHIPPED" && "CANCELLED"!=order.currentStatus && order.currentStatus != "DELIVERED" && (
                             <Button
                                 type="button"
-                                // className="small"
                                 onClick={() => cancelOrderHandler(order)}
                                 color="secondary" size="small" variant="contained" 
                             >

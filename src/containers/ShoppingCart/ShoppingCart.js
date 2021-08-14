@@ -22,6 +22,13 @@ export default function ShoppingCart(props) {
     console.log(qty);
     const [cartItems, setCartItems] = useState([]);
     const [product, setProduct] = useState([]);
+    
+    const dispatch = useDispatch();
+    const state = store.getState();
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer ' + state.oAuthToken,
+    }
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -42,7 +49,20 @@ export default function ShoppingCart(props) {
       };
 
     const checkoutHandler = () => {
-        props.history.push('/signin?redirect=shipping');
+        axios.post("http://localhost:8080/api/shoppingcarts/1/createorder", {
+        }, {headers}).then(response => {
+            alert("Placed successfully");
+            const info = JSON.stringify(response.data);
+            dispatch({
+                type: "Place Order",
+                    payload: info
+            })
+            props.history.push('/orders');
+        })
+            .catch(error => {
+                alert(error.message);
+            })
+        
     };
     return (
         <div className="row top">

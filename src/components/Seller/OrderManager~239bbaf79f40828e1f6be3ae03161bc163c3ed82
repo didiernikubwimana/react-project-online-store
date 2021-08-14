@@ -1,18 +1,30 @@
 import "./OrderManager.css"
+import React, {useContext, useEffect, useState} from "react";
 import store from "../../store/store";
 import {APIConfig} from "../../store/API-Config";
 import axios from "axios";
-import React, {useContext, useEffect, useState} from "react";
 
 const OrderManager = ()=>{
     const APIs = useContext(APIConfig);
-    const state = store.getState();
     const [orders,setOrders] = useState([]);
+    const state = store.getState();
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Authorization': 'Bearer ' + state.oAuthToken,
     }
    
+   const cancelHandler = (order) => {
+        axios(APIs.sellerAPI + "/" + order.id+ "/cancel", {headers})
+            .then(response => {
+                if(response.data === true){
+                    order.currentStatus = "CANCELLED";
+                    loadMySellerInfoData();
+                }
+            }).catch(error => {
+            alert(error.message);
+        })
+    };
+    
     const shippedHandler = (order) => {
         axios(APIs.sellerAPI + "/" + order.id+ "/shipped", {headers})
             .then(response => {
@@ -24,17 +36,8 @@ const OrderManager = ()=>{
         })
     };
 
-     const cancelHandler = (order) => {
-        axios(APIs.sellerAPI + "/" + order.id+ "/cancel", {headers})
-            .then(response => {
-                if(response.data === true){
-                    order.currentStatus = "CANCELLED";
-                    loadMySellerInfoData();
-                }
-            }).catch(error => {
-            alert(error.message);
-        })
-    }; 
+     
+    
     const deliveredHandler = (order) => {
         axios(APIs.sellerAPI + "/" + order.id+ "/delivered", {headers})
             .then(response => {
@@ -45,6 +48,7 @@ const OrderManager = ()=>{
             alert(error.message);
         })
     };
+
     const loadMySellerInfoData = ()=>{
         axios(APIs.userAPI + "/mysellerinfo",{headers})
             .then(response =>{
@@ -86,6 +90,7 @@ const OrderManager = ()=>{
                       <td>{order.buyer.user.firstName} { order.buyer.user.lastName}</td>
                       <td>{order.currentStatus}</td>
                       <td>
+
                               <button
                                   type="button"
                                   className="small"

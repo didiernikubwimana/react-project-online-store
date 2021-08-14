@@ -1,17 +1,18 @@
 import "./Review.css"
-import axios from "axios";
-import React, { useContext, useEffect, useState, useRef } from "react";
-import { Button, TextareaAutosize } from "@material-ui/core";
 import { APIConfig } from "../../store/API-Config";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import store from "../../store/store";
+import { Button, TextareaAutosize } from "@material-ui/core";
+import axios from "axios";
+
 
 const Review = (props) => {
     const APIs = useContext(APIConfig);
     const state = store.getState();
     const [reviews, setReviews] = useState([]);
-    const [showReviewForm, setShowReviewForm] = useState(false);
     const contentRef = useRef(null);
-
+    const [showReviewForm, setShowReviewForm] = useState(false);
+    
     const loadReviewData = () => {
         axios(APIs.productAPI + "/" + props.productId + "/reviews")
             .then(response => {
@@ -28,7 +29,10 @@ const Review = (props) => {
     const onLeaveReviewHandler = () =>{
         setShowReviewForm(true);
     }
+
     const onSubmitHandler = () => {
+        // console.log(state);
+
         let data = {
             "date": new Date(),
             "content": contentRef.current.value,
@@ -43,13 +47,14 @@ const Review = (props) => {
 
         axios.post(APIs.reviewAPI, data, {headers})
             .then(response => {
-                alert('Review was sent. Wait to be approved');
+                alert('Review was sent. Waiting to be approved');
             }).catch(error => {
             alert(error.message);
         })
 
         setShowReviewForm(false);
     }
+
     return (
         <div className="card">
             <div className="card-header">Product Reviews</div>

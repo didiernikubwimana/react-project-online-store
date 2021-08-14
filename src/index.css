@@ -27,8 +27,9 @@ body {
   height: 100%;
 }
 header {
-  grid-area: header;
-  background-color: #4ebcc4;
+  grid-area: header;    
+  background-color: #dfad47;
+  border-bottom: 5px solid #29bac4;
 }
 main {
   grid-area: main;

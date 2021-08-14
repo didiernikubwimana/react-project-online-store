@@ -1,33 +1,36 @@
 import React, { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
-import { APIConfig } from '../../store/API-Config';
-import { Link } from 'react-router-dom';
-import Review from '../../components/Review/Review';
 import { Button, MenuItem, Select, TextField } from '@material-ui/core';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { APIConfig } from '../../store/API-Config';
+import Review from '../../components/Review/Review';
+
 export default function Products(props) {
     const APIs = useContext(APIConfig);
-    const productAPI = APIs.productAPI;
     const productId = props.match.params.id;
-    console.log(productId);
+    const productAPI = APIs.productAPI;
     const [product, setProduct] = useState([]);
     const [qty, setQty] = useState(1);
+
   useEffect(() => {
     const fetchData = async () => {
         try {
             const { data } = await axios.get(productAPI + '/' + productId);
             setProduct(data);
             console.log(product);
-            console.log("Success");
+            console.log("Success data");
           } catch (err) {
             console.log(err);
           }
         };
         fetchData();
       }, []);
+
   const addToCartHandler = () => {
     props.history.push(`/cart/${productId}?qty=${qty}`);
   };
   return (
+
         <div>
           <Link to="/">Back to home page</Link>
           <div className="row top">
@@ -44,7 +47,9 @@ export default function Products(props) {
                   <h1>{product.productName}</h1>
                 </li>
                 <li>
-                    <h2>{product.reviews}</h2> 
+
+                    <h2>{product.reviews}</h2>
+  
                 </li>
                 <li>Pirce : ${product.price}</li>
                 <li>
@@ -58,6 +63,7 @@ export default function Products(props) {
                 <ul>
                   <li>
                     Seller{' '}
+                    
                   </li>
                   <li>
                     <div className="row">

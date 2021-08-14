@@ -1,9 +1,12 @@
+
 import React, {useContext, useEffect, useState} from "react";
+import {REVIEW_API} from "../../constants/constants";
 import { Button } from "@material-ui/core";
-import store from "../../store/store";
 import {APIConfig} from "../../store/API-Config";
 import axios from "axios";
-import {REVIEW_API} from "../../constants/constants";
+import store from "../../store/store";
+
+
 const  ProductReview = ()=>{
     const APIs = useContext(APIConfig);
     const state = store.getState();
@@ -23,6 +26,7 @@ const  ProductReview = ()=>{
                 alert(error.message);
         })
     };
+
     const loadNotapprovedData = ()=>{
         axios(REVIEW_API + "/notapproved",{headers})
             .then(response=>{
@@ -43,8 +47,8 @@ const  ProductReview = ()=>{
               <tr>
                   <th>ID</th>
                   <th>STAR</th>
-                  <th>COMMENT</th>
-                  <th>APPROVED STATUS</th>
+                  <th>COMMENTS</th>
+                  <th>APPROVED</th>
               </tr>
               </thead>
               <tbody>
@@ -57,6 +61,7 @@ const  ProductReview = ()=>{
                           {!review.approved && (
                               <Button
                                   type="button"
+                                //   className="small"
                                   onClick={() => approveReviewHandler(review)}
                                   color="secondary" size="small" variant="contained" 
                               >
@@ -72,5 +77,4 @@ const  ProductReview = ()=>{
     );
 
 }
-
 export  default  ProductReview;

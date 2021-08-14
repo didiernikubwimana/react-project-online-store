@@ -1,29 +1,27 @@
 import React, {useContext, useState} from 'react';
 import "./Login.css"
+import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import {APIConfig} from "../../store/API-Config";
-import {Link} from "react-router-dom";
 import {APIHeader, UserInfo} from "../../store/AppContext";
-import store from "../../store/store";
+import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
+import store from "../../store/store";
 import {LOGIN_FETCH_SUCCESS, SET_USER} from "../../constants/constants";
 import { Button } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
+
 export default function Login(props) {
     const APIs = useContext(APIConfig);
-    const { userInfo, setUserInfo } = useContext(UserInfo);
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const { userInfo, setUserInfo } = useContext(UserInfo);
     const state = store.getState();
+    const [password, setPassword] = useState("");
     const dispatch = useDispatch();
-
     function validateForm() {
         return email.length > 0 && password.length > 0;
     }
-
     function handleSubmit(event) {
         event.preventDefault();
-
         axios.post(APIs.loginAPI, {
             username:email,
             password:password
@@ -53,7 +51,6 @@ export default function Login(props) {
                 alert(error.message);
             })
     }
-
     return (
         <div>
             <form className="form" onSubmit={handleSubmit}>
@@ -61,7 +58,6 @@ export default function Login(props) {
                     <h1>Sign In</h1>
                 </div>
                 <div>
-                    {/* <label htmlFor="email">Username</label> */}
                     <TextField
                     label="Username"
                         type="text"
@@ -73,7 +69,6 @@ export default function Login(props) {
                     ></TextField>
                 </div>
                 <div>
-                    {/* <label htmlFor="password">Password</label> */}
                     <TextField
                     label="Password"
                         type="password"

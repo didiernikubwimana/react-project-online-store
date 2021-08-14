@@ -1,34 +1,33 @@
 import logo from './logo.svg';
 import React, { useEffect, useState,useContext } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import './App.css';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect, BrowserRouter} from "react-router-dom";
-import Login from "./components/Login/Login";
-import SignUp from "./components/SignUp/SignUpComp";
+import './App.css';
 import {APIConfig} from "./store/API-Config";
+import SignUp from "./components/SignUp/SignUpComp";
+import Login from "./components/Login/Login";
 import Home from "./containers/Home/Home";
 import {UserInfo} from "./store/AppContext";
 import store from "./store/store";
 import {LOGOUT, SET_USER} from "./constants/constants";
 import Approval from "./components/Approval/Approval";
-import ProductManager from "./components/ProductManager/ProductManagerComp";
+import AddProduct from "./components/AddProduct/AddProducts";
 import Products from './containers/Products/Products';
+import Footer from "./components/Footer";
 import ProductReview from "./components/ProductReview/ProductReview";
 import OrderManager from "./components/Seller/OrderManager";
+import Header from "./components/Header";
 import Orders from "./components/Orders/Orders";
 import Profile from "./components/Profile/Profile";
-import AddProduct from "./components/AddProduct/AddProducts";
+import { useDispatch, useSelector } from 'react-redux';
 import EditProduct from "./components/EditProduct/EditProduct";
 import ShoppingCart from './containers/ShoppingCart/ShoppingCart';
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import ProductManager from "./components/ProductManager/ProductManagerComp";
+
 
 
 function App() {
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [userInfo, setUserInfo ] = useState(null);
-
-
   const state = store.getState();
   const dispatch = useDispatch();
 
@@ -48,26 +47,24 @@ function App() {
       <APIConfig.Provider value={
         {
           registerAPI: 'http://localhost:8080/signup',
-          loginAPI: 'http://localhost:8080/authenticate',
-          logoutAPI: 'http://localhost:8080/logout',
-          productAPI: 'http://localhost:8080/api/products',
-          orderAPI: 'http://localhost:8080/api/orders',
-          sellerAPI: 'http://localhost:8080/api/sellers',
-          categoryAPI: 'http://localhost:8080/api/categories',
-          roleAPI: 'http://localhost:8080/api/roles',
           userAPI: 'http://localhost:8080/api/users',
-          adminAPI: 'http://localhost:8080/api/admin',
-          reviewAPI: 'http://localhost:8080/api/reviews'
+          loginAPI: 'http://localhost:8080/authenticate',
+          roleAPI: 'http://localhost:8080/api/roles',
+          logoutAPI: 'http://localhost:8080/logout',
+          orderAPI: 'http://localhost:8080/api/orders',
+          productAPI: 'http://localhost:8080/api/products',
+          categoryAPI: 'http://localhost:8080/api/categories',
+          sellerAPI: 'http://localhost:8080/api/sellers',
+          reviewAPI: 'http://localhost:8080/api/reviews',
+          adminAPI: 'http://localhost:8080/api/admin'
         }
       }>
         <UserInfo.Provider value={{ userInfo, setUserInfo }}>
           <BrowserRouter>
             <Header/>
             <div className="grid-container">
-
               <header className="row">
                 <div>
-
                   <Link className="brand" to="/">
                   Mini Market
                   </Link>
@@ -78,7 +75,6 @@ function App() {
                     Cart
                   </Link>
                   )}
-
                   {userInfo && userInfo.isSeller && (
                       <div className="dropdown">
                         <Link to="#admin">
@@ -141,18 +137,17 @@ function App() {
                     )}
                 </div>
               </header>
-             
               <main>
                 <Route path="/cart" component={ShoppingCart}></Route>
-                <Route path="/newproduct" component={AddProduct}></Route>
                 <Route path='/editproduct/:id' exact component={EditProduct} />
-                <Route path="/profile" component={Profile}></Route>
+                <Route path="/newproduct" component={AddProduct}></Route>
                 <Route path="/productreviews" component={ProductReview}></Route>
                 <Route path="/approval" component={Approval}></Route>
-                <Route path="/signin" component={Login}></Route>
+                <Route path="/profile" component={Profile}></Route>
                 <Route path="/signup" component={SignUp}></Route>
-                <Route path="/productlist/seller" component={ProductManager}></Route>
+                <Route path="/signin" component={Login}></Route>
                 <Route path="/orders" component={Orders}></Route>
+                <Route path="/productlist/seller" component={ProductManager}></Route>
                 <Route path="/orderlist/seller" component={OrderManager}></Route>
                 <Route path="/product/:id" component={Products} exact></Route>
                 <Route path="/" component={Home} exact></Route>
@@ -164,5 +159,4 @@ function App() {
       </APIConfig.Provider>
   );
 }
-
 export default App;

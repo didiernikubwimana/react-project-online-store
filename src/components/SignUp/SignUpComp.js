@@ -1,15 +1,13 @@
-import React, {useContext, useState} from 'react';
-// import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import axios from 'axios';
-import {APIConfig} from "../../store/API-Config";
-import store from "../../store/store";
-import {useDispatch} from "react-redux";
-import {REGISTER_SUCCESS} from "../../constants/constants";
+import React, { useContext, useState } from 'react';
+import { useDispatch } from "react-redux";
 import { Button, MenuItem, TextField } from '@material-ui/core';
+import { APIConfig } from "../../store/API-Config";
+import store from "../../store/store";
+import { Link } from "react-router-dom";
+import { REGISTER_SUCCESS } from "../../constants/constants";
+import axios from 'axios';
 
-
-const SignUp = (props)=>{
+const SignUp = (props) => {
 
     const APIs = useContext(APIConfig);
     const [firstName, setFirstName] = useState('');
@@ -22,15 +20,13 @@ const SignUp = (props)=>{
 
     function handleRegisterSubmit(event) {
         event.preventDefault();
-
         axios.post(APIs.registerAPI, {
-            firstName:firstName,
-            lastName:lastName,
-            username:email,
-            password:password,
-            roles:[{id:userRole}],
-            phoneNumber:phNumber
-
+            firstName: firstName,
+            lastName: lastName,
+            username: email,
+            password: password,
+            roles: [{ id: userRole }],
+            phoneNumber: phNumber
         }).then(response => {
             alert("Registered successfully");
             document.location.href = '/signin';
@@ -46,11 +42,9 @@ const SignUp = (props)=>{
                 <div>
                     <h1>Create Account</h1>
                 </div>
-                {/* {loading && <LoadingBox></LoadingBox>}
-        {error && <MessageBox variant="danger">{error}</MessageBox>} */}
                 <div>
                     <TextField
-                    label="First Name"
+                        label="First Name"
                         type="text"
                         id="firstName"
                         placeholder="Enter First name"
@@ -61,7 +55,7 @@ const SignUp = (props)=>{
                 </div>
                 <div>
                     <TextField
-                    label="Last Name"
+                        label="Last Name"
                         type="text"
                         id="LastName"
                         placeholder="Enter Last name"
@@ -72,7 +66,7 @@ const SignUp = (props)=>{
                 </div>
                 <div>
                     <TextField
-                    label="Email address"
+                        label="Email address"
                         type="email"
                         id="email"
                         placeholder="Enter email"
@@ -83,7 +77,7 @@ const SignUp = (props)=>{
                 </div>
                 <div>
                     <TextField
-                    label="Phone Number"
+                        label="Phone Number"
                         type="number"
                         id="phNumber"
                         placeholder="Enter Phone Number"
@@ -94,7 +88,7 @@ const SignUp = (props)=>{
                 </div>
                 <div>
                     <TextField
-                    label="Password"
+                        label="Password"
                         type="password"
                         id="password"
                         placeholder="Enter password"
@@ -105,7 +99,7 @@ const SignUp = (props)=>{
                 </div>
                 <div>
                     <TextField
-                    label="Confirm Password"
+                        label="Confirm Password"
                         type="password"
                         id="confirmPassword"
                         placeholder="Enter confirm password"
@@ -114,11 +108,9 @@ const SignUp = (props)=>{
                         variant="outlined"
                     ></TextField>
                 </div>
-
                 <div>
-
                     <TextField label="User type" name="user" id="user" onChange={(e) => setUserRole(e.target.value)} select variant="outlined">
-                
+
                         <MenuItem value="3">Buyer</MenuItem>
                         <MenuItem value="2">Seller</MenuItem>
                     </TextField>
@@ -134,8 +126,7 @@ const SignUp = (props)=>{
                     <label />
                     <div>
                         Already have an account?{' '}
-                        {/* <Link to={`/signin?redirect=${redirect}`}>Sign-In</Link> */}
-                        {/* replace the following line by the above */}
+
                         <Link to="/signin" >Sign-In</Link>
                     </div>
                 </div>
@@ -145,4 +136,4 @@ const SignUp = (props)=>{
         </div>
     );
 }
-export  default SignUp;
+export default SignUp;

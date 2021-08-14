@@ -1,18 +1,18 @@
-
-import React, {useContext, useEffect, useState} from "react";
-import {APIConfig} from "../../store/API-Config";
-import store from "../../store/store";
 import axios from "axios";
+import {APIConfig} from "../../store/API-Config";
 import { Button } from "@material-ui/core";
-
+import store from "../../store/store";
+import React, {useContext, useEffect, useState} from "react";
 const  Orders = ()=>{
     const APIs = useContext(APIConfig);
-    const [orders,setOrders] = useState([]);
     const state = store.getState();
+    const [orders,setOrders] = useState([]);
+    
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Authorization': 'Bearer ' + state.oAuthToken,
     }
+    
     const cancelOrderHandler = (order) => {
         axios(APIs.orderAPI + "/" + order.id+ "/cancel", {headers})
             .then(response => {
@@ -54,7 +54,6 @@ const  Orders = ()=>{
             <h1>List Of Orders</h1>
             <Button
                 type="button"
-                // className="small"
                 onClick={() => pdfExportHandler()}
                 color="secondary" size="small" variant="contained"
             >
@@ -78,11 +77,10 @@ const  Orders = ()=>{
                         <td>{order.totalMoney}</td>
                         <td>{order.currentStatus}</td>
                         <td>
-                            {order.currentStatus != "CANCELLED" &&
-                                order.currentStatus != "SHIPPED" && order.currentStatus != "DELIVERED" && (
+                            {
+                                order.currentStatus != "SHIPPED" && "CANCELLED"!=order.currentStatus && order.currentStatus != "DELIVERED" && (
                             <Button
                                 type="button"
-                                // className="small"
                                 onClick={() => cancelOrderHandler(order)}
                                 color="secondary" size="small" variant="contained" 
                             >

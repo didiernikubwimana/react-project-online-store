@@ -1,5 +1,4 @@
 import Axios from 'axios';
-import { useContext } from 'react';
 import {
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
@@ -11,25 +10,25 @@ import {
 
 export const addToCart = (productId, qty) => async (dispatch, getState) => {
  
-  const { data } = await Axios.get(`http://localhost:8080/api/products` + '/' + productId);
+  const { dataUsed } = await Axios.get(`http://localhost:8080/api/products` + '/' + productId);
   const {
     cart: { cartItems },
   } = getState();
   if (cartItems.length < 0) {
     dispatch({
       type: CART_ADD_ITEM_FAIL,
-      payload: `Can't Add To Cart. `,
+      payload: `Can't Add Item To Cart. `,
     });
   } else {
     dispatch({
       type: CART_ADD_ITEM,
       payload: {
-        name: data.productName,
-        image: data.photo,
-        price: data.price,
-        countInStock: data.quantityInStock,
-        product: data.id,
-        seller: data.seller,
+        name: dataUsed.productName,
+        image: dataUsed.photo,
+        price: dataUsed.price,
+        countInStock: dataUsed.quantityInStock,
+        product: dataUsed.id,
+        seller: dataUsed.seller,
         qty,
       },
     });
@@ -40,15 +39,14 @@ export const addToCart = (productId, qty) => async (dispatch, getState) => {
   }
 };
 
+export const saveShippingAddress = (dataUsed) => (dispatch) => {
+  dispatch({ type: CART_SAVE_SHIPPING_ADDRESS, payload: dataUsed });
+  localStorage.setItem('shippingAddress', JSON.stringify(dataUsed));
+};
+export const savePaymentMethod = (dataUsed) => (dispatch) => {
+  dispatch({ type: CART_SAVE_PAYMENT_METHOD, payload: dataUsed });
+};
 export const removeFromCart = (productId) => (dispatch, getState) => {
   dispatch({ type: CART_REMOVE_ITEM, payload: productId });
   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
-};
-
-export const saveShippingAddress = (data) => (dispatch) => {
-  dispatch({ type: CART_SAVE_SHIPPING_ADDRESS, payload: data });
-  localStorage.setItem('shippingAddress', JSON.stringify(data));
-};
-export const savePaymentMethod = (data) => (dispatch) => {
-  dispatch({ type: CART_SAVE_PAYMENT_METHOD, payload: data });
 };

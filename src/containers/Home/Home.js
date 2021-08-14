@@ -1,9 +1,8 @@
+import store from "../../store/store";
+import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import Product from '../../components/Product/Products';
-import axios from 'axios';
 import { APIConfig } from '../../store/API-Config';
-import store from "../../store/store";
-
 export default function Home() {
     const [products, setProducts] = useState([]);
     const APIs = useContext(APIConfig);
@@ -24,7 +23,6 @@ export default function Home() {
         if(userInfo == null || (userInfo && userInfo.isSeller === false && userInfo.isAdmin === false))
             return fecthData();
           }, []);
-
    return (
     <div className="row center">
         {products.map((product) => (

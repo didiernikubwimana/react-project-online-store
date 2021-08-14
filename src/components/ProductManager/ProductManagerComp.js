@@ -1,15 +1,15 @@
 
 import React, {useContext, useEffect, useState} from "react";
-import {APIConfig} from "../../store/API-Config";
 import store from "../../store/store";
+import { Button } from "@material-ui/core";
+import {APIConfig} from "../../store/API-Config";
 import axios from "axios";
 import {Link} from "react-router-dom";
-import { Button } from "@material-ui/core";
 
 const  ProductManager = ()=>{
     const APIs = useContext(APIConfig);
-    const [products,setProducts] = useState([]);
     const state = store.getState();
+    const [products,setProducts] = useState([]);
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Authorization': 'Bearer ' + state.oAuthToken,
@@ -21,7 +21,7 @@ const  ProductManager = ()=>{
                     loadSellerData();
                 }
             }).catch(error => {
-                alert("Can not delete product!");
+                alert("Can not delete given product!");
         })
     };
 

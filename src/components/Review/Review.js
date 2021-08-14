@@ -1,14 +1,14 @@
 import "./Review.css"
+import axios from "axios";
 import React, { useContext, useEffect, useState, useRef } from "react";
+import { Button, TextareaAutosize } from "@material-ui/core";
 import { APIConfig } from "../../store/API-Config";
 import store from "../../store/store";
-import axios from "axios";
-import { Button, TextareaAutosize } from "@material-ui/core";
 
 const Review = (props) => {
     const APIs = useContext(APIConfig);
-    const [reviews, setReviews] = useState([]);
     const state = store.getState();
+    const [reviews, setReviews] = useState([]);
     const [showReviewForm, setShowReviewForm] = useState(false);
     const contentRef = useRef(null);
 
@@ -28,10 +28,7 @@ const Review = (props) => {
     const onLeaveReviewHandler = () =>{
         setShowReviewForm(true);
     }
-
     const onSubmitHandler = () => {
-        // console.log(state);
-
         let data = {
             "date": new Date(),
             "content": contentRef.current.value,
@@ -53,7 +50,6 @@ const Review = (props) => {
 
         setShowReviewForm(false);
     }
-
     return (
         <div className="card">
             <div className="card-header">Product Reviews</div>
